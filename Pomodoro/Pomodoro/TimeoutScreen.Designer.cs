@@ -42,11 +42,11 @@
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 55.25F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 155.25F);
+            this.label1.ForeColor = System.Drawing.Color.DarkRed;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(776, 231);
+            this.label1.Size = new System.Drawing.Size(776, 432);
             this.label1.TabIndex = 0;
             this.label1.Text = "REST";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
