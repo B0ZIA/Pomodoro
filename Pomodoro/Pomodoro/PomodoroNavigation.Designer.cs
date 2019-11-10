@@ -1,6 +1,6 @@
 ﻿namespace Pomodoro
 {
-    partial class TimeNavigationPanel
+    partial class PomodoroNavigation
     {
         /// <summary> 
         /// Wymagana zmienna projektanta.

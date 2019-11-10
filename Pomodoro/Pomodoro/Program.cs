@@ -17,6 +17,7 @@ namespace Pomodoro
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Pomodoro());
+
         }
     }
 }

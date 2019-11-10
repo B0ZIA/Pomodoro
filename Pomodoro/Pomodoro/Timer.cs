@@ -11,27 +11,54 @@ namespace Pomodoro
     public class Timer
     {
         protected static System.Windows.Forms.Timer clock;
-        public int currentTime = 1800;    //default 30 min
-        static bool exitFlag = false;
+        private int _currentTime = 1800;    //default 30 min
+        private static bool exitFlag = false;
 
+        
 
         public virtual void Tick(Object myObject, EventArgs myEventArgs)
         {
-            currentTime -= 1;
-            TimeSpan time = TimeSpan.FromSeconds(currentTime);
-            Pomodoro.TimeLabel.Text = time.ToString(@"mm\:ss");
+            _currentTime -= 1;
+            TimeSpan time = TimeSpan.FromSeconds(_currentTime);
+            Pomodoro.Instance.GetTimeLabel().Text = time.ToString(@"mm\:ss");
+
+            if (TimeoutScreen.time != null)
+            {
+                TimeoutScreen.time.Text = time.ToString(@"mm\:ss");
+
+                if (_currentTime == 0)
+                    TimeoutScreen.Timeout += TimeoutScreen.Instance.Quit();
+            }
+
+            if (_currentTime == 60)
+                LastMinute();
+
+            if (_currentTime == 0)
+                Timeout();
+        }
+
+        public virtual void Timeout()
+        {
+            ;
+        }
+
+        public virtual void LastMinute()
+        {
+            ;
         }
 
         protected void StartClock(int seconds)
         {
+            if (clock != null)
+                clock.Stop();
             clock = new System.Windows.Forms.Timer();
-            currentTime = seconds;
+            _currentTime = seconds;
 
             for (int i = 0; i <= seconds; i++)
             {
                 clock.Tick += new EventHandler(Tick);
 
-                clock.Interval = 1000;
+                clock.Interval = 1;
                 clock.Start();
 
                 while (exitFlag == false)

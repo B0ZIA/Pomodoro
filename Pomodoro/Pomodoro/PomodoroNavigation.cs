@@ -13,19 +13,21 @@ namespace Pomodoro
     /// <summary>
     /// Zarządza przyciskami nawigacji czasu
     /// </summary>
-    public partial class TimeNavigationPanel : UserControl
+    public partial class PomodoroNavigation : UserControl
     {
         public readonly List<Button> butttonsDuringIdle;
         public readonly List<Button> buttonsDuringCountdown;
 
 
 
-        public TimeNavigationPanel(Control parent)
+        public PomodoroNavigation(Control parent)
         {
             InitializeComponent();
             Parent = parent;
             butttonsDuringIdle = new List<Button> { SkipBtn, PauseBtn, CancelBtn };
             buttonsDuringCountdown = new List<Button> { WorkBtn, RestBtn};
+
+            SetPanel(Possibilities.DuringIdle);
         }
 
         public enum Possibilities
@@ -62,7 +64,7 @@ namespace Pomodoro
 
         private void SkipBtn_Click(object sender, EventArgs e)
         {
-            PomodoroTimer.Instance.Work();
+            PomodoroTimer.Instance.Skip();
         }
 
         private void PauseBtn_Click(object sender, EventArgs e)

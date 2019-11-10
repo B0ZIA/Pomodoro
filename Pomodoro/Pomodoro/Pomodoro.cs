@@ -13,18 +13,55 @@ namespace Pomodoro
 {
     public partial class Pomodoro : Form
     {
-        public static TimeNavigationPanel timeManager;
-        public static PomodoroTimer pomodoroTimer;
-        public static Label TimeLabel;
+        public static Pomodoro Instance;
 
+        private readonly PomodoroTimer pomodoroTimer;
+        private readonly PomodoroNavigation pomodoroNavigation;
+        private readonly PomodoroNotifyIcon pomodoroNotifyIcon;
+
+
+
+        public Label GetTimeLabel()
+        {
+            return currentTimeLabel;
+        }
 
         public Pomodoro()
         {
+            if (Instance == null)
+                Instance = this;
+            else
+                Application.Exit();
+
             InitializeComponent();
-            timeManager = new TimeNavigationPanel(Navigation);
-            pomodoroTimer = new PomodoroTimer(timeManager);
-            timeManager.SetPanel(TimeNavigationPanel.Possibilities.DuringIdle);
-            TimeLabel = currentTimeLabel;
+
+            pomodoroNavigation = new PomodoroNavigation(Navigation);
+            pomodoroTimer = new PomodoroTimer(pomodoroNavigation);
+            pomodoroNotifyIcon = new PomodoroNotifyIcon(notifyIcon);
+        }
+
+        public void ShowToTaskbar()
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                pomodoroNotifyIcon.Show();
+            }
+        }
+
+        private void Pomodoro_Resize(object sender, EventArgs e)
+        {
+            ShowToTaskbar();
+        }
+
+        public void Exit(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Quit_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
 
         //SoundPlayer player = new SoundPlayer();

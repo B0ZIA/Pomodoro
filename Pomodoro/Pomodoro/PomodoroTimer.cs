@@ -20,31 +20,60 @@ namespace Pomodoro
         PomodoroState state;
         PomodoroState _steteBeforePause;
 
-        static TimeNavigationPanel timeManager;
+        static PomodoroNavigation pomodoroNavigation;
+
+
+
+        public PomodoroTimer(PomodoroNavigation _timeManager)
+        {
+            Instance = this;
+            pomodoroNavigation = _timeManager;
+        }
 
         public override void Tick(Object myObject, EventArgs myEventArgs)
         {
             base.Tick(myObject, myEventArgs);
-            //Pomodoro.TimeLabel.Text = currentTime.ToString(@"mm\:ss");
         }
 
-        public PomodoroTimer(TimeNavigationPanel _timeManager)
+        public override void Timeout()
         {
-            Instance = this;
-            timeManager = _timeManager;
+            if (state == PomodoroState.Work)
+            {
+                Rest();
+            }
+            else if (state == PomodoroState.Rest)
+            {
+                MessageBox.Show("Time to work!", "Pomodoro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Pomodoro.Instance.Visible = true;
+            }
+
+            base.Timeout();
+            Skip();
+        }
+
+        public override void LastMinute()
+        {
+            //TODO: Sound Effect
+            base.LastMinute();
         }
 
         public void Work()
         {
             state = PomodoroState.Work;
-            timeManager.SetPanel(TimeNavigationPanel.Possibilities.DuringCountdown);
+            pomodoroNavigation.SetPanel(PomodoroNavigation.Possibilities.DuringCountdown);
             StartClock(WORK_TIME);
         }
 
         public void Rest()
         {
+            TimeoutScreen timeout = new TimeoutScreen();
+            timeout.Show();
+            if (clock != null)
+                clock.Stop();
+            MessageBox.Show("Time to rest!", "Pomodoro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             state = PomodoroState.Rest;
-            timeManager.SetPanel(TimeNavigationPanel.Possibilities.DuringCountdown);
+            pomodoroNavigation.SetPanel(PomodoroNavigation.Possibilities.DuringCountdown);
             StartClock(BREAK_TIME);
         }
 
@@ -55,30 +84,19 @@ namespace Pomodoro
             switch (state)
             {
                 case PomodoroState.Work:
-                    state = PomodoroState.Rest;
-                    StartClock(BREAK_TIME);
+                    Rest();
                     break;
                 case PomodoroState.Rest:
-                    state = PomodoroState.Work;
-                    StartClock(WORK_TIME);
+                    Work();
                     break;
                 case PomodoroState.Pause:
                     if (_steteBeforePause == PomodoroState.Work)
                         Rest();
+                    else if (_steteBeforePause == PomodoroState.Rest)
+                        Work();
                     break;
                 default:
                     break;
-            }
-
-            if (state == PomodoroState.Work)
-            {
-                state = PomodoroState.Rest;
-                StartClock(BREAK_TIME);
-            }
-            else if (state == PomodoroState.Rest)
-            {
-                state = PomodoroState.Work;
-                StartClock(WORK_TIME);
             }
         }
 
@@ -99,9 +117,9 @@ namespace Pomodoro
 
         public void Cancel()
         {
-            timeManager.SetPanel(TimeNavigationPanel.Possibilities.DuringIdle);
+            pomodoroNavigation.SetPanel(PomodoroNavigation.Possibilities.DuringIdle);
             clock.Stop();
-            Pomodoro.TimeLabel.Text = "00:00";
+            Pomodoro.Instance.GetTimeLabel().Text = "00:00";
         }
 
         enum PomodoroState

@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pomodoro));
             this.currentTimeLabel = new System.Windows.Forms.Label();
             this.Navigation = new System.Windows.Forms.Panel();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.Quit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // currentTimeLabel
@@ -53,19 +57,41 @@
             this.Navigation.Size = new System.Drawing.Size(865, 138);
             this.Navigation.TabIndex = 7;
             // 
-            // Form1
+            // notifyIcon
+            // 
+            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "Pomodoro";
+            // 
+            // Quit
+            // 
+            this.Quit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Quit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Quit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.Quit.ForeColor = System.Drawing.Color.Silver;
+            this.Quit.Location = new System.Drawing.Point(819, 0);
+            this.Quit.Margin = new System.Windows.Forms.Padding(0);
+            this.Quit.Name = "Quit";
+            this.Quit.Size = new System.Drawing.Size(45, 44);
+            this.Quit.TabIndex = 9;
+            this.Quit.Text = "X";
+            this.Quit.UseVisualStyleBackColor = false;
+            this.Quit.Click += new System.EventHandler(this.Quit_Click);
+            // 
+            // Pomodoro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(41)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(863, 524);
+            this.Controls.Add(this.Quit);
             this.Controls.Add(this.Navigation);
             this.Controls.Add(this.currentTimeLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
-            this.ShowIcon = false;
+            this.Name = "Pomodoro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Pomodoro";
+            this.Resize += new System.EventHandler(this.Pomodoro_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -75,6 +101,8 @@
 
         private System.Windows.Forms.Label currentTimeLabel;
         private System.Windows.Forms.Panel Navigation;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.Button Quit;
     }
 }
 
