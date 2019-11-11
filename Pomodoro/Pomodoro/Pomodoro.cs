@@ -57,6 +57,7 @@ namespace Pomodoro
         public void Exit(object sender, EventArgs e)
         {
             Application.Exit();
+            Close();
         }
 
         private void Quit_Click(object sender, EventArgs e)

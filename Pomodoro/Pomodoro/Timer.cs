@@ -58,7 +58,7 @@ namespace Pomodoro
             {
                 clock.Tick += new EventHandler(Tick);
 
-                clock.Interval = 1;
+                clock.Interval = 1000;
                 clock.Start();
 
                 while (exitFlag == false)

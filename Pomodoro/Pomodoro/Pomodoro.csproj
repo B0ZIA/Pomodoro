@@ -80,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="PomodoroNavigation.resx">
       <DependentUpon>PomodoroNavigation.cs</DependentUpon>
@@ -99,6 +100,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprites\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprites\continue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprites\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprites\skip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprites\coffe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprites\jugglery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sprites\physical_activity.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -43,7 +43,7 @@ namespace Pomodoro
             }
             else if (state == PomodoroState.Rest)
             {
-                MessageBox.Show("Time to work!", "Pomodoro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Time to work!", "Pomodoro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Pomodoro.Instance.Visible = true;
             }
 
@@ -70,7 +70,7 @@ namespace Pomodoro
             timeout.Show();
             if (clock != null)
                 clock.Stop();
-            MessageBox.Show("Time to rest!", "Pomodoro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Time to rest!", "Pomodoro", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             state = PomodoroState.Rest;
             pomodoroNavigation.SetPanel(PomodoroNavigation.Possibilities.DuringCountdown);

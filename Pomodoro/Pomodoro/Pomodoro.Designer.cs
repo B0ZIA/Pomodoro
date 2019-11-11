@@ -39,18 +39,18 @@
             // currentTimeLabel
             // 
             this.currentTimeLabel.AutoSize = true;
-            this.currentTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.currentTimeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(56)))), ((int)(((byte)(57)))));
-            this.currentTimeLabel.Location = new System.Drawing.Point(289, 139);
+            this.currentTimeLabel.Font = new System.Drawing.Font("Segoe Script", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentTimeLabel.ForeColor = System.Drawing.Color.White;
+            this.currentTimeLabel.Location = new System.Drawing.Point(265, 132);
             this.currentTimeLabel.Name = "currentTimeLabel";
-            this.currentTimeLabel.Size = new System.Drawing.Size(284, 108);
+            this.currentTimeLabel.Size = new System.Drawing.Size(374, 153);
             this.currentTimeLabel.TabIndex = 1;
             this.currentTimeLabel.Text = "30:00";
             this.currentTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Navigation
             // 
-            this.Navigation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(27)))), ((int)(((byte)(32)))));
+            this.Navigation.BackColor = System.Drawing.Color.Maroon;
             this.Navigation.CausesValidation = false;
             this.Navigation.Location = new System.Drawing.Point(-1, 386);
             this.Navigation.Name = "Navigation";
@@ -65,9 +65,9 @@
             // 
             // Quit
             // 
-            this.Quit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Quit.BackColor = System.Drawing.Color.Maroon;
             this.Quit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Quit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.Quit.Font = new System.Drawing.Font("Segoe Script", 20F);
             this.Quit.ForeColor = System.Drawing.Color.Silver;
             this.Quit.Location = new System.Drawing.Point(819, 0);
             this.Quit.Margin = new System.Windows.Forms.Padding(0);
@@ -82,7 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(41)))), ((int)(((byte)(48)))));
+            this.BackColor = System.Drawing.Color.Brown;
             this.ClientSize = new System.Drawing.Size(863, 524);
             this.Controls.Add(this.Quit);
             this.Controls.Add(this.Navigation);
