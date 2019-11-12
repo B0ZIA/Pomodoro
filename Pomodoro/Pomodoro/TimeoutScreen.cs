@@ -15,8 +15,6 @@ namespace Pomodoro
     {
         public static TimeoutScreen Instance;
         public static Label time;
-        public delegate void OnTimeout();
-        public static event OnTimeout Timeout;
 
         public TimeoutScreen()
         {
@@ -26,13 +24,6 @@ namespace Pomodoro
             time = timeLabel;
 
             Pomodoro.Instance.Visible = false;
-        }
-
-        public OnTimeout Quit()
-        {
-            Console.WriteLine("Timeout!");
-            Close();
-            return null;
         }
     }
 }

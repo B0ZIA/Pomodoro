@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Pomodoro
 {
-    public class Timer
+    public abstract class Timer
     {
         protected static System.Windows.Forms.Timer clock;
         private int _currentTime = 1800;    //default 30 min
@@ -27,7 +27,7 @@ namespace Pomodoro
                 TimeoutScreen.time.Text = time.ToString(@"mm\:ss");
 
                 if (_currentTime == 0)
-                    TimeoutScreen.Timeout += TimeoutScreen.Instance.Quit();
+                    TimeoutScreen.Instance.Close();
             }
 
             if (_currentTime == 60)
@@ -37,15 +37,9 @@ namespace Pomodoro
                 Timeout();
         }
 
-        public virtual void Timeout()
-        {
-            ;
-        }
+        public abstract void Timeout();
 
-        public virtual void LastMinute()
-        {
-            ;
-        }
+        public abstract void LastMinute();
 
         protected void StartClock(int seconds)
         {
@@ -58,7 +52,7 @@ namespace Pomodoro
             {
                 clock.Tick += new EventHandler(Tick);
 
-                clock.Interval = 1000;
+                clock.Interval = 1;
                 clock.Start();
 
                 while (exitFlag == false)

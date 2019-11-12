@@ -64,12 +64,5 @@ namespace Pomodoro
         {
             WindowState = FormWindowState.Minimized;
         }
-
-        //SoundPlayer player = new SoundPlayer();
-        //private void TimeoutSoundEffect()
-        //{
-        //    player.SoundLocation = @"D:\_Application_Pomodoro\Pomodoro\Pomodoro\timeout.wav";
-        //    player.Play();
-        //}
     }
 }
