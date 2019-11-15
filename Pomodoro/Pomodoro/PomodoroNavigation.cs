@@ -10,19 +10,18 @@ using System.Windows.Forms;
 
 namespace Pomodoro
 {
-    /// <summary>
-    /// Zarządza przyciskami nawigacji czasu
-    /// </summary>
     public partial class PomodoroNavigation : UserControl
     {
         public readonly List<Button> butttonsDuringIdle;
         public readonly List<Button> buttonsDuringCountdown;
 
+        private PomodoroTimer pomodoroTimer;
 
 
-        public PomodoroNavigation(Control parent)
+        public PomodoroNavigation(Control parent, PomodoroTimer pomodoroTimer)
         {
             InitializeComponent();
+            this.pomodoroTimer = pomodoroTimer;
             Parent = parent;
             butttonsDuringIdle = new List<Button> { SkipBtn, PauseBtn, CancelBtn };
             buttonsDuringCountdown = new List<Button> { WorkBtn, RestBtn};
@@ -64,27 +63,27 @@ namespace Pomodoro
 
         private void SkipBtn_Click(object sender, EventArgs e)
         {
-            PomodoroTimer.Instance.Skip();
+            pomodoroTimer.Skip();
         }
 
         private void PauseBtn_Click(object sender, EventArgs e)
         {
-            PomodoroTimer.Instance.Pause();
+            pomodoroTimer.Pause();
         }
 
         private void RestBtn_Click(object sender, EventArgs e)
         {
-            PomodoroTimer.Instance.Rest();
+            pomodoroTimer.Rest();
         }
 
         private void WorkBtn_Click(object sender, EventArgs e)
         {
-            PomodoroTimer.Instance.Work();
+            pomodoroTimer.Work();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            PomodoroTimer.Instance.Cancel();
+            pomodoroTimer.Cancel();
         }
     }
 }

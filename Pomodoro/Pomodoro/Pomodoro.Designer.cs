@@ -41,7 +41,7 @@
             this.currentTimeLabel.AutoSize = true;
             this.currentTimeLabel.Font = new System.Drawing.Font("Segoe Script", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentTimeLabel.ForeColor = System.Drawing.Color.White;
-            this.currentTimeLabel.Location = new System.Drawing.Point(265, 132);
+            this.currentTimeLabel.Location = new System.Drawing.Point(249, 138);
             this.currentTimeLabel.Name = "currentTimeLabel";
             this.currentTimeLabel.Size = new System.Drawing.Size(374, 153);
             this.currentTimeLabel.TabIndex = 1;
@@ -52,9 +52,10 @@
             // 
             this.Navigation.BackColor = System.Drawing.Color.Maroon;
             this.Navigation.CausesValidation = false;
-            this.Navigation.Location = new System.Drawing.Point(-1, 386);
+            this.Navigation.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Navigation.Location = new System.Drawing.Point(0, 386);
             this.Navigation.Name = "Navigation";
-            this.Navigation.Size = new System.Drawing.Size(865, 138);
+            this.Navigation.Size = new System.Drawing.Size(863, 138);
             this.Navigation.TabIndex = 7;
             // 
             // notifyIcon
@@ -65,6 +66,7 @@
             // 
             // Quit
             // 
+            this.Quit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Quit.BackColor = System.Drawing.Color.Maroon;
             this.Quit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Quit.Font = new System.Drawing.Font("Segoe Script", 20F);
@@ -88,6 +90,7 @@
             this.Controls.Add(this.Navigation);
             this.Controls.Add(this.currentTimeLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Pomodoro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pomodoro";

@@ -16,14 +16,23 @@ namespace Pomodoro
         public static TimeoutScreen Instance;
         public static Label time;
 
-        public TimeoutScreen()
+        private Pomodoro pomodoro;
+
+        public TimeoutScreen(Pomodoro pomodoro)
         {
             Instance = this;
 
+            this.pomodoro = pomodoro;
             InitializeComponent();
             time = timeLabel;
 
-            Pomodoro.Instance.Visible = false;
+            pomodoro.Visible = false;
+        }
+
+        public void Timeout()
+        {
+            pomodoro.Visible = true;
+
         }
     }
 }

@@ -1,48 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Media;
 
 namespace Pomodoro
 {
     public class PomodoroTimer : Timer
     {
-        public static PomodoroTimer Instance;
         public const int BREAK_TIME = 300;    //5 min
         public const int WORK_TIME = 1800;    //30 min
 
-        State state;
-        State stateBeforeLastPause;
+        private readonly Pomodoro pomodoro;
+        private readonly PomodoroNavigation pomodoroNavigation;
 
-        static PomodoroNavigation pomodoroNavigation;
+        private State state;
+        private State stateBeforeLastPause;
 
 
 
-        public PomodoroTimer(PomodoroNavigation pomodoroNavigation)
+        public PomodoroTimer(Pomodoro pomodoro)
         {
-            Instance = this;
-            PomodoroTimer.pomodoroNavigation = pomodoroNavigation;
+            this.pomodoro = pomodoro;
+
+            pomodoroNavigation = new PomodoroNavigation(this.pomodoro.BottomPanel, this);
+
+        }
+
+        public override void Tick(object myObject, EventArgs myEventArgs)
+        {
+            TimeSpan time = TimeSpan.FromSeconds(currentTime);
+            pomodoro.SetTimeLabel(time.ToString(@"mm\:ss"));
+
+            if (TimeoutScreen.time != null)
+            {
+                TimeoutScreen.time.Text = time.ToString(@"mm\:ss");
+            }
+
+            base.Tick(myObject, myEventArgs);
         }
 
         public override void Timeout()
         {
+            if (state == State.Rest)
+            {
+                if (TimeoutScreen.Instance != null)
+                    TimeoutScreen.Instance.Close();
+            }
+
             Skip();
         }
 
-        public override void LastMinute()
+        public override void BeforeTimeout()
         {
             //TODO: Sound Effect
         }
 
         public void Work()
         {
-            Pomodoro.Instance.Visible = true;
+            pomodoro.Visible = true;
             state = State.Work;
             pomodoroNavigation.SetPanel(PomodoroNavigation.Possibilities.DuringCountdown);
             StartClock(WORK_TIME);
@@ -50,10 +62,8 @@ namespace Pomodoro
 
         public void Rest()
         {
-            TimeoutScreen timeout = new TimeoutScreen();
+            TimeoutScreen timeout = new TimeoutScreen(pomodoro);
             timeout.Show();
-            if (clock != null)
-                clock.Stop();
 
             state = State.Rest;
             pomodoroNavigation.SetPanel(PomodoroNavigation.Possibilities.DuringCountdown);
@@ -102,7 +112,7 @@ namespace Pomodoro
         {
             pomodoroNavigation.SetPanel(PomodoroNavigation.Possibilities.DuringIdle);
             clock.Stop();
-            Pomodoro.Instance.GetTimeLabel().Text = "00:00";
+            pomodoro.SetTimeLabel();
         }
 
         enum State

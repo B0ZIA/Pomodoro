@@ -13,31 +13,21 @@ namespace Pomodoro
 {
     public partial class Pomodoro : Form
     {
-        public static Pomodoro Instance;
-
         private readonly PomodoroTimer pomodoroTimer;
-        private readonly PomodoroNavigation pomodoroNavigation;
         private readonly PomodoroNotifyIcon pomodoroNotifyIcon;
+        public Panel BottomPanel { get { return Navigation; } }
 
-
-
-        public Label GetTimeLabel()
-        {
-            return currentTimeLabel;
-        }
 
         public Pomodoro()
         {
-            if (Instance == null)
-                Instance = this;
-            else
-                Application.Exit();
-
             InitializeComponent();
+            pomodoroTimer = new PomodoroTimer(this);
+            pomodoroNotifyIcon = new PomodoroNotifyIcon(notifyIcon, this);
+        }
 
-            pomodoroNavigation = new PomodoroNavigation(Navigation);
-            pomodoroTimer = new PomodoroTimer(pomodoroNavigation);
-            pomodoroNotifyIcon = new PomodoroNotifyIcon(notifyIcon);
+        public void SetTimeLabel(string text = "00:00")
+        {
+            currentTimeLabel.Text = text;
         }
 
         public void ShowToTaskbar()

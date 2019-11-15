@@ -10,16 +10,17 @@ namespace Pomodoro
     class PomodoroNotifyIcon
     {
         private NotifyIcon notifyIcon;
+        private Pomodoro pomodoro;
 
 
-
-        public PomodoroNotifyIcon(NotifyIcon notifyIcon)
+        public PomodoroNotifyIcon(NotifyIcon notifyIcon, Pomodoro pomodoro)
         {
             this.notifyIcon = notifyIcon;
+            this.pomodoro = pomodoro;
 
             this.notifyIcon.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
-            this.notifyIcon.ContextMenuStrip.Items.Add("Exit", null, Pomodoro.Instance.Exit);
-            this.notifyIcon.MouseDoubleClick += notifyIcon_MouseDoubleClick;
+            this.notifyIcon.ContextMenuStrip.Items.Add("Exit", null, pomodoro.Exit);
+            this.notifyIcon.MouseDoubleClick += MouseDoubleClick;
         }
 
         public void Show()
@@ -33,11 +34,11 @@ namespace Pomodoro
             notifyIcon.Visible = false;
         }
 
-        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Hide();
-            Pomodoro.Instance.Show();
-            Pomodoro.Instance.WindowState = FormWindowState.Normal;
+            pomodoro.Show();
+            pomodoro.WindowState = FormWindowState.Normal;
         }
     }
 }

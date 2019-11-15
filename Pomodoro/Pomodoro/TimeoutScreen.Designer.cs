@@ -47,24 +47,24 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Segoe Script", 155.25F);
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(572, 9);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(776, 432);
+            this.label1.Size = new System.Drawing.Size(1920, 432);
             this.label1.TabIndex = 0;
             this.label1.Text = "REST";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timeLabel
             // 
-            this.timeLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.timeLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.timeLabel.Font = new System.Drawing.Font("Segoe Script", 50.25F);
             this.timeLabel.ForeColor = System.Drawing.Color.LightGray;
-            this.timeLabel.Location = new System.Drawing.Point(572, 870);
+            this.timeLabel.Location = new System.Drawing.Point(0, 879);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(776, 201);
+            this.timeLabel.Size = new System.Drawing.Size(1920, 201);
             this.timeLabel.TabIndex = 1;
             this.timeLabel.Text = "5:00";
             this.timeLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
